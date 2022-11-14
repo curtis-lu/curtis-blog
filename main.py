@@ -15,10 +15,10 @@ app = Flask(__name__)
 
 ckeditor = CKEditor(app)
 Bootstrap(app)
-app.config['SECRET_KEY'] = os.environ['BLOG_APP_KEY']
+app.config['SECRET_KEY'] = os.environ.get('BLOG_APP_KEY')
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///blog.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
